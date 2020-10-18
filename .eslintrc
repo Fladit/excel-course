@@ -11,7 +11,8 @@
     "require-jsdoc": "off",
     "no-trailing-spaces": "off",
     "indent": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "arrow-parens": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
