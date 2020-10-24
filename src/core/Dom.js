@@ -1,14 +1,42 @@
 class Dom {
-    constructor() {
+    constructor(selector) {
+        typeof selector === "string"?
+            this.$el = document.querySelector(selector)
+            :this.$el = selector
+    }
+
+    html(html = "") {
+        // getter
+        if (!html) {
+            return this.$el.innerHTML
+        }
+        // setter
+        this.$el.innerHTML = html
+        return this
+    }
+
+    clear() {
+        this.$el.innerHTML = ""
+        return this
+    }
+
+    append(node) {
+        if (node instanceof Dom) {
+            node = node.$el
+        }
+        this.$el.append(node)
+        return this
     }
 }
 
-export function $() {
-    return new Dom()
+    function $(selector) {
+        return new Dom(selector)
 }
 
 $.create = (tag, classes) => {
     const el = document.createElement(tag)
     el.classList.add(classes)
-    return el;
+    return $(el);
 }
+
+export {$}
