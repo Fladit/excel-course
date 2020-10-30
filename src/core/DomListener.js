@@ -1,3 +1,5 @@
+import {capitalize} from "@core/utils";
+
 export class DomListener {
     constructor($root, listeners = []) {
         if (!$root) {
@@ -7,7 +9,19 @@ export class DomListener {
         this.listeners = listeners
     }
     initListeners() {
-        console.log(this.listeners)
+        this.listeners.forEach(listener => {
+            const methodName = getMethodName(listener)
+            if (!this[methodName]) {
+                throw Error(`Method ${methodName} in ${this.name || ""} 
+                is not exist!`);
+            }
+            console.log(this[methodName])
+            this.$root.on(listener, this[methodName].bind(this))
+        })
     }
+}
+
+function getMethodName(methodName) {
+    return "on" + capitalize(methodName)
 }
 

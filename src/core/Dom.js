@@ -20,6 +20,10 @@ class Dom {
         return this
     }
 
+    on(targetType, callback) {
+        this.$el.addEventListener(targetType, callback);
+    }
+
     append(node) {
         if (node instanceof Dom) {
             node = node.$el
