@@ -16,7 +16,14 @@ export class DomListener {
                 is not exist!`);
             }
             console.log(this[methodName])
-            this.$root.on(listener, this[methodName].bind(this))
+            this[methodName] = this[methodName].bind(this)
+            this.$root.on(listener, this[methodName])
+        })
+    }
+    removeDOMListeners() {
+        this.listeners.forEach(listener => {
+            const methodName = getMethodName(listener)
+            this.$root.off(listener, this[methodName])
         })
     }
 }
