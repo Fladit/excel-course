@@ -15,7 +15,6 @@ export class DomListener {
                 throw Error(`Method ${methodName} in ${this.name || ""} 
                 is not exist!`);
             }
-            console.log(this[methodName])
             this[methodName] = this[methodName].bind(this)
             this.$root.on(listener, this[methodName])
         })
