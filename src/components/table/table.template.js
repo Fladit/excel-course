@@ -5,15 +5,23 @@ const CODES = {
 
 
 function createRow(value, index = '' ) {
+    const resize = index? '<div class="row-resize"></div>' : ''
     return (`
 <div class="row">
-    <div class="row-info">${index}</div>
+    <div class="row-info">
+    ${index}
+    ${resize}
+    </div>
     <div class="row-data">${value}</div>
 </div>`)
 }
 
 function createColumn(value = '') {
-    return `<div class="column">${value}</div>`
+    return (
+        `<div class="column">
+        ${value}
+        <div class="col-resize"></div>
+        </div>`)
 }
 
 function createCell(value = '') {
